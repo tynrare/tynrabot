@@ -100,6 +100,7 @@ score.post((req, res) => {
 async function main() {
   const opts = {};
   if (process.env.NODE_ENV === "production") {
+    const domain = process.env.SERVICE_DOMAIN || "localhost";
     opts.webhook = {
       domain,
       port: 80,
