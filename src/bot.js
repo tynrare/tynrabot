@@ -65,34 +65,34 @@ function init_bot(app) {
 }
 
 function init_score(app, bot) {
-  const check_token = (req, reply) => {
-    const token = url.parse(req.headers.referer).query.slice(6);
+  const check_token = (request, reply) => {
+    const token = url.parse(request.headers.referer).query.slice(6);
     if (!jws.verify(token, "HS512", process.env.SIGN_SECRET)) {
       return reply.code(403).send("wrong token");
     }
-    req.game_body = JSON.parse(jws.decode(token).payload);
+    request.game_body = JSON.parse(jws.decode(token).payload);
 
     return null;
   };
 
   app.get("/score", (request, reply) => {
-    if (check_token(req, reply)) {
+    if (check_token(request, reply)) {
       return;
     }
 
-    const { user, imessage, chat, message } = req.game_body;
+    const { user, imessage, chat, message } = request.game_body;
     bot.telegram
       .getGameHighScores(user, imessage, chat, message)
       .then((scores) => {
-        res.send(scores);
+        reply.send(scores);
       })
       .catch((err) => {
         console.log(err);
-        res.code(500).send(err);
+        reply.code(500).send(err);
       });
   });
   app.post("/score", (request, reply) => {
-    if (check_token(req, reply)) {
+    if (check_token(request, reply)) {
       return;
     }
 
