@@ -31,7 +31,8 @@ function init_bot(app) {
   });
 
   bot.gameQuery((ctx) => {
-      console.log(ctx.callback_query);
+      console.log("aaa");
+      /*
     const game = games[ctx.callback_query.game_short_name];
     const token = jws.sign({
       header: { alg: "HS512" },
@@ -45,6 +46,7 @@ function init_bot(app) {
       secret: process.env.SIGN_SECRET,
     });
     ctx.answerGameQuery(games[game](token));
+  */
   });
 
   // Enable graceful stop
