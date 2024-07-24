@@ -67,8 +67,8 @@ function init_bot(app) {
 
 function init_score(app, bot) {
   const check_token = (request, reply) => {
-    console.log(request.query);
-    const token = request.query.token;
+    console.log(request.url)
+    const token = url.parse(request.url).query.slice(6);
     if (!jws.verify(token, "HS512", process.env.SIGN_SECRET)) {
       return reply.code(403).send("wrong token");
     }
