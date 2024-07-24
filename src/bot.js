@@ -8,7 +8,7 @@ function init_bot(app) {
 
   const games = {
     booling: (token) =>
-      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}#splashscreen_bowling`,
+      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#splashscreen_bowling`,
   };
 
   bot.start((ctx) => ctx.reply("Welcome"));
@@ -63,29 +63,29 @@ function init_score(app, bot) {
     }
     req.game_body = JSON.parse(jws.decode(token).payload);
 
-		return null;
+    return null;
   };
 
-	app.get("/score", (request, reply) => {
-		if (check_token(req, reply)) {
-			return;
-		}
+  app.get("/score", (request, reply) => {
+    if (check_token(req, reply)) {
+      return;
+    }
 
     const { user, imessage, chat, message } = req.game_body;
     bot.telegram
       .getGameHighScores(user, imessage, chat, message)
       .then((scores) => {
-				res.send(scores);
+        res.send(scores);
       })
       .catch((err) => {
         console.log(err);
-				res.code(500).send(err);
+        res.code(500).send(err);
       });
-	});
-	app.post("/score", (request, reply) => {
-		if (check_token(req, reply)) {
-			return;
-		}
+  });
+  app.post("/score", (request, reply) => {
+    if (check_token(req, reply)) {
+      return;
+    }
 
     const scoreValue = parseInt(request.body.score);
     if (scoreValue <= 0) {
@@ -95,12 +95,12 @@ function init_score(app, bot) {
     telegram
       .setGameScore(user, scoreValue, imessage, chat, message, true)
       .then(() => {
-				reply.send();
+        reply.send();
       })
       .catch((err) => {
-				reply.code(err.code || 500).send(err);
+        reply.code(err.code || 500).send(err);
       });
-	});
+  });
 }
 
 module.exports = fastifyPlugin(async (app) => {
