@@ -112,6 +112,9 @@ function init_score(app, bot) {
         reply.code(err.code || 500).send(err);
       });
   });
+  app.options("/score", (request, reply) => {
+    reply.send();
+  });
 }
 
 module.exports = fastifyPlugin(async (app) => {
