@@ -2,6 +2,7 @@ const fastifyPlugin = require("fastify-plugin");
 const { Telegraf } = require("telegraf");
 const { message } = require("telegraf/filters");
 const jws = require("jws");
+const url = require('url')
 
 function init_bot(app) {
   const bot = new Telegraf(process.env.BOT_TOKEN);
