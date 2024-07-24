@@ -45,7 +45,9 @@ function init_bot(app) {
     });
     const gamefunc = games[game];
     if (!gamefunc) {
-        throw new Error(`No game ${game} found`);
+        const err = `No game ${game} found`;
+        console.error(err);
+        throw new Error(err);
     }
     const gameurl = gamefunc(token)
     ctx.answerGameQuery(gameurl);
