@@ -31,16 +31,16 @@ function init_bot(app) {
   });
 
   bot.gameQuery((ctx) => {
-      console.log("aaa");
+      console.log("aaa", ctx.callbackQuery);
       /*
-    const game = games[ctx.callback_query.game_short_name];
+    const game = games[ctx.callbackQuery.game_short_name];
     const token = jws.sign({
       header: { alg: "HS512" },
       payload: {
         game: game,
         user: ctx.from.id,
-        imessage: ctx.callback_query.inline_message_id,
-        message: (ctx.callback_query.message || {}).message_id,
+        imessage: ctx.callbackQuery.inline_message_id,
+        message: (ctx.callbackQuery.message || {}).message_id,
         chat: (ctx.chat || {}).id,
       },
       secret: process.env.SIGN_SECRET,
