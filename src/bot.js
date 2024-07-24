@@ -97,9 +97,10 @@ function init_score(app, bot) {
       return;
     }
 
-    const scoreValue = parseInt(request.body.score);
+    console.log(request.body);
+    const scoreValue = parseInt(request.body.score ?? 0);
     if (scoreValue <= 0) {
-      return reply.code(400).send("score can't be negatice");
+      return reply.code(400).send("score can't be negative");
     }
     const { user, imessage, chat, message } = request.game_body;
     telegram
