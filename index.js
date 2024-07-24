@@ -103,15 +103,14 @@ async function main() {
     const domain = process.env.SERVICE_DOMAIN || "localhost";
     opts.webhook = {
       domain,
-      port: 80,
+      port: PORT,
     };
-  }
+  } else {
+		process.once("SIGINT", () => bot.stop("SIGINT"));
+		process.once("SIGTERM", () => bot.stop("SIGTERM"));
+	}
 
   bot.launch(opts);
-
-  // Enable graceful stop
-  process.once("SIGINT", () => bot.stop("SIGINT"));
-  process.once("SIGTERM", () => bot.stop("SIGTERM"));
 }
 
 main();
