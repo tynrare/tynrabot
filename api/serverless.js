@@ -9,8 +9,8 @@ app.get('/',  (req, rep) => rep.send(
   'https://github.com/tynrare/tynrabot\n'
 ))
 
-app.get("/ping", (req, res) => {
-  res.json({ pong: true });
+app.get("/ping", (request, reply) => {
+	reply.send("pong");
 });
 
 module.exports = async (req, res) => {
