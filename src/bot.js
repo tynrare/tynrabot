@@ -10,7 +10,7 @@ function init_bot(app) {
     booling: (token) =>
       `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#splashscreen_bowling`,
     tapgame_a: (token) =>
-      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}minigame_a`,
+      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#minigame_a`,
   };
 
   bot.start((ctx) => ctx.reply("Welcome"));
