@@ -1,7 +1,7 @@
 {
   "name": "tynrabot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/bot.js",
   "scripts": {
     "start": "node index.js"
   },
@@ -11,7 +11,8 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "fastify": "^4.5.3",
+    "fastify-plugin": "^4.2.1",
     "jws": "^4.0.0",
     "telegraf": "^4.16.3"
   }
