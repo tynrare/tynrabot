@@ -31,7 +31,7 @@ function init_bot(app) {
   });
 
   bot.gameQuery((ctx) => {
-    const game = games[ctx.callbackQuery.game_short_name];
+    const game = ctx.callbackQuery.game_short_name;
     const token = jws.sign({
       header: { alg: "HS512" },
       payload: {
