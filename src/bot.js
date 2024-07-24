@@ -31,8 +31,6 @@ function init_bot(app) {
   });
 
   bot.gameQuery((ctx) => {
-      console.log("aaa", ctx.callbackQuery);
-      /*
     const game = games[ctx.callbackQuery.game_short_name];
     const token = jws.sign({
       header: { alg: "HS512" },
@@ -45,8 +43,12 @@ function init_bot(app) {
       },
       secret: process.env.SIGN_SECRET,
     });
-    ctx.answerGameQuery(games[game](token));
-  */
+    const gamefunc = games[game];
+    if (!gamefunc) {
+        throw new Error(`No game ${game} found`);
+    }
+    const gameurl = gamefunc(token)
+    ctx.answerGameQuery(gameurl);
   });
 
   // Enable graceful stop
