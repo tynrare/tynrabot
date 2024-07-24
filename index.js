@@ -103,7 +103,7 @@ async function main() {
     const domain = process.env.SERVICE_DOMAIN || "localhost";
     opts.webhook = {
       domain,
-      port: PORT,
+      port: 80,
     };
   } else {
 		process.once("SIGINT", () => bot.stop("SIGINT"));
