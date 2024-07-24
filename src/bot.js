@@ -103,7 +103,7 @@ function init_score(app, bot) {
       return reply.code(400).send("score can't be negative");
     }
     const { user, imessage, chat, message } = request.game_body;
-    telegram
+    bot.telegram
       .setGameScore(user, scoreValue, imessage, chat, message, true)
       .then(() => {
         reply.send();
