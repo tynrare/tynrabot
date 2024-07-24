@@ -9,6 +9,8 @@ function init_bot(app) {
   const games = {
     booling: (token) =>
       `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#splashscreen_bowling`,
+    tapgame_a: (token) =>
+      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}minigame_a`,
   };
 
   bot.start((ctx) => ctx.reply("Welcome"));
