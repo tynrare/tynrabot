@@ -98,12 +98,15 @@ score.post((req, res) => {
 });
 
 async function main() {
+  const opts = {};
   if (process.env.NODE_ENV === "production") {
-    const domain = process.env.SERVICE_DOMAIN || "localhost";
-    app.use(await bot.createWebhook({ domain }));
-  } else {
-    bot.launch();
+    opts.webhook = {
+      domain,
+      port: 80,
+    };
   }
+
+  bot.launch(opts);
 
   // Enable graceful stop
   process.once("SIGINT", () => bot.stop("SIGINT"));
