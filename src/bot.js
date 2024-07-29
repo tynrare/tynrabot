@@ -13,7 +13,9 @@ function init_bot(app) {
     tapgame_a: (token) =>
       `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#minigame_a`,
     tynmaze: (token) => `https://tynmaze.netlify.app/`,
-    tynmaze_fps: (token) => `https://tynmaze-fps.netlify.app/`
+    tynmaze_fps: (token) => `https://tynmaze-fps.netlify.app/`,
+    blockbreaker: (token) =>
+      `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#blockbreaker`,
   };
 
   bot.start((ctx) => ctx.reply("Welcome"));
