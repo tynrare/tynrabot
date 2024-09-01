@@ -16,6 +16,7 @@ function init_bot(app) {
     tynmaze_fps: (token) => `https://tynmaze-fps.netlify.app/`,
     blockbreaker: (token) =>
       `https://witgs-threejs.netlify.app/?mode=prod&token=${token}&server=${process.env.VERCEL_URL}#blockbreaker`,
+    tynmaze_atg: (token) => `https://tynmaze-atg.netlify.app/?token=${token}&server=${process.env.VERCEL_URL}#blockbreaker`
   };
 
   bot.start((ctx) => ctx.reply("Welcome"));
@@ -101,7 +102,6 @@ function init_score(app, bot) {
       return;
     }
 
-    console.log(request.body);
     const scoreValue = parseInt(request.body.score ?? 0);
     if (scoreValue <= 0) {
       return reply.code(400).send("score can't be negative");
